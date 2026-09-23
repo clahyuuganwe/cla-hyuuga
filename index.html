@@ -521,12 +521,28 @@
     <script>
         function closeSplash() {
             const splash = document.getElementById('splash-screen');
-            splash.classList.add('fade-out');
+            if (splash) {
+                splash.classList.add('fade-out');
+            }
         }
 
-        setTimeout(() => {
-            closeSplash();
-        }, 4000);
+        // LÓGICA INTELIGENTE: Espera o GIF carregar 100% para contar o tempo
+        const gifImg = document.querySelector('#splash-screen img');
+
+        function iniciarTempo() {
+            // Permanece aberto por 6000ms (6 segundos) após o carregamento completo da imagem
+            setTimeout(() => {
+                closeSplash();
+            }, 6000); 
+        }
+
+        if (gifImg.complete) {
+            iniciarTempo();
+        } else {
+            gifImg.addEventListener('load', iniciarTempo);
+            // Backup caso o evento de load demore muito por oscilação de rede
+            setTimeout(iniciarTempo, 3000);
+        }
 
         // --- ENVIAR PARA O DISCORD VIA WEBHOOK ---
         document.getElementById('webhookForm').addEventListener('submit', function(e) {
