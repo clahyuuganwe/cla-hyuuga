@@ -13,6 +13,9 @@
     <!-- Fonte Ninja Naruto -->
     <link href="https://fonts.cdnfonts.com/css/ninja-naruto" rel="stylesheet">
     
+    <!-- FontAwesome para ícones (Discord) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -225,20 +228,6 @@
             font-style: italic;
         }
 
-        .subleader-box {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
-            padding: 18px;
-            margin: 25px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .subleader-box h3 {
-            color: #60a5fa;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
         .highlight-list {
             list-style: none;
             margin: 15px 0;
@@ -254,10 +243,97 @@
         }
 
         .highlight-list li::before {
-            content: "⚔️";
+            content: "👁️";
             position: absolute;
             left: 0;
             font-size: 0.8rem;
+        }
+
+        /* --- CARD DE VÍDEO DESTACADO --- */
+        .video-card-wrapper {
+            background: #1c1335;
+            border: 1px solid #5b21b6;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+            margin-top: 15px;
+            transition: transform 0.3s;
+        }
+
+        .video-card-wrapper:hover {
+            transform: scale(1.01);
+            border-color: #a855f7;
+        }
+
+        .video-thumbnail-container {
+            position: relative;
+            width: 100%;
+            background-color: #000;
+        }
+
+        .video-thumbnail-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+
+        .video-card-wrapper:hover .video-thumbnail-container img {
+            opacity: 1;
+        }
+
+        .play-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            width: 70px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .video-card-wrapper:hover .play-button-overlay {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: #ff0000;
+        }
+
+        .video-card-info {
+            padding: 20px;
+        }
+
+        .video-card-info h3 {
+            color: #f3e8ff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .yt-link-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            font-size: 1rem;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .yt-link-btn:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
         }
 
         /* --- LIDERANÇA --- */
@@ -375,6 +451,50 @@
             color: #64748b;
             font-size: 0.9rem;
             margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-link {
+            color: #a855f7;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: #d8b4fe;
+            text-decoration: underline;
+        }
+
+        .footer-discord-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #5865F2;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .footer-discord-link:hover {
+            transform: scale(1.05);
+            color: #7983f5;
+            text-decoration: underline;
+        }
+
+        .footer-discord-link i {
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -402,6 +522,7 @@
     <nav>
         <div class="nav-container">
             <a href="#lore" class="nav-link">História</a>
+            <a href="#video-destaque" class="nav-link">Vídeo</a>
             <a href="#lideranca" class="nav-link">Liderança</a>
             <a href="#album" class="nav-link">Álbum</a>
             <a href="#recrutamento" class="nav-link">Recrutamento</a>
@@ -419,22 +540,11 @@
                 </p>
                 
                 <p>
-                    Os Hyuuga são ninjas determinados, valentes e persistentes. São aqueles que nunca desistem facilmente de seus objetivos, mesmo diante das maiores dificuldades.
+                    Durante a fase de preparação e nos alicerces da criação, contou com o apoio de <strong>Hayatoo</strong>, que chegou para somar forças desde o começo ao lado de Reshiram para erguer nossa história.
                 </p>
 
                 <div class="quote-box">
                     "O Clã Hyuuga é um clã destinado a Konoha. Nossa lealdade sempre será para com a Vila da Folha, e assim permanecerá."
-                </div>
-
-                <!-- Destaque do Sub-Líder Hayatoo -->
-                <div class="subleader-box">
-                    <h3>⚔️ A Lâmina do Clã: Hyuuga Hayatoo</h3>
-                    <p>
-                        Enquanto o clã se consolidava sob a visão firme de Reshiram, uma força devastadora se juntava à liderança Hyuuga. Conhecido pelas suas origens e pela maestria incomparável com a espada, <strong>Hayatoo</strong> forjou seu caminho com aço e disciplina, conquistando o respeito do mundo shinobi como <strong>"O Espadachim do País do Ferro"</strong>.
-                    </p>
-                    <p style="margin-top: 10px;">
-                        Ao colocar sua lâmina a serviço de Konoha e do clã, sua velocidade surreal nos confrontos lhe rendeu a alcunha de <strong>"O Furacão Azul da Folha"</strong>. Dominando o combate com corte preciso e agilidade extrema, Hayatoo representa a linha de frente defensiva e ofensiva dos Hyuuga — a lâmina leal que garante que nenhum inimigo ameace nossa família.
-                    </p>
                 </div>
 
                 <p>Nosso objetivo é simples:</p>
@@ -453,6 +563,25 @@
                     <span style="color: #fff;">Um clã é uma família.</span><br><br>
                     E nós somos os Hyuuga.
                 </p>
+            </div>
+        </section>
+
+        <!-- Vídeo da Criação em Destaque -->
+        <section id="video-destaque" class="card">
+            <h2>🎬 Primeira Reunião do Clã Hyuuga</h2>
+            <p style="text-align: center; color: #cbd5e1; margin-bottom: 15px;">Assista ao registro oficial da criação do clã e dos primeiros membros em ação:</p>
+            
+            <div class="video-card-wrapper">
+                <a href="https://www.youtube.com/watch?v=e2S9t-TuhZo" target="_blank" style="text-decoration: none;">
+                    <div class="video-thumbnail-container">
+                        <img src="https://img.youtube.com/vi/e2S9t-TuhZo/hqdefault.jpg" alt="Primeira Reunião do Clã Hyuuga">
+                        <div class="play-button-overlay">▶</div>
+                    </div>
+                </a>
+                <div class="video-card-info">
+                    <h3>Primeira Reunião do Clã Hyuuga</h3>
+                    <a href="https://www.youtube.com/watch?v=e2S9t-TuhZo" target="_blank" class="yt-link-btn">▶ Assistir no YouTube</a>
+                </div>
             </div>
         </section>
 
@@ -522,6 +651,12 @@
 
     <!-- Rodapé -->
     <footer>
+        <div class="footer-links">
+            
+            <a href="https://discord.gg/ERaWw8vGhp" target="_blank" class="footer-discord-link">
+                <i class="fa-brands fa-discord"></i> Discord OFICIAL do NWE
+            </a>
+        </div>
         <p>&copy; Clã Hyuuga - Naruto World Evolution | Vila da Folha</p>
     </footer>
 
