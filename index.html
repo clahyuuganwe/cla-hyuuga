@@ -374,31 +374,90 @@
             color: #f3e8ff;
         }
 
-        /* --- SEÇÃO ÁLBUM --- */
-        .album-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 15px;
+        /* --- SEÇÃO ÁLBUM (SLIDE / CARROSSEL) --- */
+        .slider-container {
+            position: relative;
+            max-width: 100%;
             margin-top: 15px;
+            background: #1c1335;
+            border: 1px solid #5b21b6;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
         }
 
-        .album-item {
-            background: #1c1335;
-            border: 1px solid #3b0764;
-            border-radius: 8px;
-            height: 160px;
+        .slider-track {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            width: 100%;
+        }
+
+        .slide-item {
+            min-width: 100%;
+            box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            font-style: italic;
-            transition: transform 0.3s, border-color 0.3s;
+            background-color: #000;
         }
 
-        .album-item:hover {
-            transform: scale(1.02);
-            border-color: #a855f7;
+        .slide-item img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(91, 33, 182, 0.8);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            padding: 12px 16px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-btn:hover {
+            background: #a855f7;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: #130d24;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b0764;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .dot.active {
+            background: #a855f7;
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
         }
 
         /* --- RECRUTAMENTO RP --- */
@@ -600,14 +659,31 @@
             </div>
         </section>
 
-        <!-- Álbum -->
+        <!-- Álbum em Slide -->
         <section id="album" class="card">
             <h2>📸 Álbum de Fotos</h2>
             <p style="text-align: center; color: #cbd5e1; margin-bottom: 15px;">Registros das nossas maiores batalhas e reuniões em Konoha.</p>
-            <div class="album-grid">
-                <div class="album-item">Em breve: Prints de Eventos</div>
-                <div class="album-item">Em breve: Reunião do Clã</div>
-                <div class="album-item">Em breve: Guerra Ninja</div>
+            
+            <div class="slider-container">
+                <button class="slider-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide-item">
+                        <img src="https://i.postimg.cc/g2XRy824/hyuuga.png" alt="Registro Clã Hyuuga 1">
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://i.postimg.cc/3JyWz75P/hyuuga2.png" alt="Registro Clã Hyuuga 2">
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://i.postimg.cc/Cxk5LNKt/hyuuga3.png" alt="Registro Clã Hyuuga 3">
+                    </div>
+                </div>
+                <button class="slider-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+                
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
             </div>
         </section>
 
@@ -681,6 +757,35 @@
         } else {
             gifImg.addEventListener('load', iniciarTempo);
             setTimeout(iniciarTempo, 3000);
+        }
+
+        /* --- SCRIPT DO SLIDE DE FOTOS --- */
+        let currentSlideIndex = 0;
+        const totalSlides = 3;
+
+        function updateSlidePosition() {
+            const track = document.getElementById('sliderTrack');
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            } else if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            }
+            updateSlidePosition();
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            updateSlidePosition();
         }
     </script>
 </body>
