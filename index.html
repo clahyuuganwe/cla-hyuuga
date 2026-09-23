@@ -1,9 +1,4 @@
-<!--
-   index.html
-   
-   Copyright 2026 ASSIS SOUSA <ASSIS SOUSA@DESKTOP-2S38SG2>
-   
-   This a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -388,21 +383,21 @@
 </head>
 <body>
 
-    <!-- Splash Screen -->
+    <!-- Splash Screen (Arquivos Locais) -->
     <div id="splash-screen">
-        <img src="https://i.postimg.cc/Y9bQvJcx/c85a7fccf477cccc19d8874ffa0fc141.gif" alt="Abertura Hyuuga">
+        <img src="abertura.gif" alt="Abertura Hyuuga">
         <button class="enter-btn" onclick="closeSplash()">Acessar o Portal</button>
     </div>
 
-    <!-- Cabeçalho -->
+    <!-- Cabeçalho (Arquivos Locais) -->
     <header>
         <div class="server-branding">
-            <img src="https://i.postimg.cc/3Js7MNyJ/1790167302110.png" alt="Logo NWE">
+            <img src="logo-nwe.png" alt="Logo NWE">
             <h2 class="server-title">Naruto World Evolution</h2>
         </div>
 
         <div class="hyuuga-branding">
-            <img src="https://i.postimg.cc/sDB526Tp/1790164914616.png" alt="Clã Hyuuga">
+            <img src="logo-hyuuga.png" alt="Clã Hyuuga">
         </div>
     </header>
 
@@ -538,7 +533,7 @@
             e.preventDefault();
 
             // COLE A SUA URL DO WEBHOOK AQUI ENTRE AS ASPAS:
-            const WEBHOOK_URL = "https://discord.com/api/webhooks/1552307202524577892/iXfwtzx5dcW_TFehri9D1lAMW2P1Qt_yGCAAfIuljbJN9YKAZ4vuf8kUXMLtYXjgaCkE";
+            const WEBHOOK_URL = "SUA_URL_DO_WEBHOOK_AQUI";
 
             if(WEBHOOK_URL === "SUA_URL_DO_WEBHOOK_AQUI" || WEBHOOK_URL === "") {
                 alert("Erro: O líder precisa configurar o link do Webhook do Discord no código!");
@@ -556,10 +551,9 @@
 
             const payload = {
                 username: "Recrutamento Hyuuga",
-                avatar_url: "https://i.postimg.cc/sDB526Tp/1790164914616.png",
                 embeds: [{
                     title: "👁️ Novo Alistamento Recebido!",
-                    color: 9371802, // Roxo Hyuuga
+                    color: 9371802,
                     fields: [
                         { name: "Nick no Jogo", value: nick, inline: true },
                         { name: "Level", value: level, inline: true },
@@ -595,36 +589,4 @@
         });
     </script>
 </body>
-</html> is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2 of the License, or
-   (at your option) any later version.
-   
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-   MA 02110-1301, USA.
-   
-   
--->
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-	<title>sem título</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 2.1" />
-</head>
-
-<body>
-	
-</body>
-
 </html>
